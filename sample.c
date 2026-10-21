@@ -14,6 +14,6 @@ int main() {
         total = total - 1;
     }
 
-    printf("Result:", total);
+    printf("Result: %d\n", total);
     return 0;
 }

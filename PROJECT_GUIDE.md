@@ -44,6 +44,8 @@ the `<END>` token.
 - If a character does not match a supported token, the lexer prints an error
   and continues scanning.
 - `<END>` marks the end of the token list so the parser knows when to stop.
+- In the visualizer, tokens are shown as numbered rows with their source line,
+  making it easier to find where each one came from.
 
 ## Part 3 — Symbol table and expression helpers
 
@@ -103,9 +105,8 @@ This part starts at the `PART 5` marker inside `statement`.
 This part starts at the `PART 6` marker inside `statement` and includes the
 rest of the file.
 
-- The `printf` case supports a quoted string, one simple value, or a string
-  followed by one value. It emits a `print` instruction. Full C formatting,
-  such as `%d`, is not implemented.
+- The `printf` case supports a quoted string, one simple value, or one `%d`
+  integer placeholder with a value. It turns these into print instructions.
 - The `return` case reads either `return;` or `return` followed by an
   expression, then emits a return instruction.
 - The assignment case reads a variable assignment, `++`, or `--`. It checks
@@ -115,7 +116,12 @@ rest of the file.
 - `main` reads source text from standard input, runs the lexer, parses the
   statements, and prints the tokens, syntax/semantic result, symbol table,
   and intermediate code.
-- The compiler prints intermediate code only when no errors were found. It
+- `run_intermediate` walks through the generated instructions. It follows
+  labels and jumps, performs integer calculations, and collects text produced
+  by `print` instructions. A step limit stops accidental infinite loops.
+- The program output is shown after the intermediate code. For the sample, it
+  displays `Result: 10`.
+- The compiler runs generated instructions only when there are no errors. It
   returns `0` for success and `1` when it finds errors. The web server uses
   this result to show success or failure.
 
@@ -136,6 +142,8 @@ python .\server.py
 Keep that terminal open, then open `http://127.0.0.1:8765` in a browser. Click
 **Load sample**, then **Compile and view phases**. The page shows tokens,
 syntax/semantic checks, the symbol table, and intermediate code separately.
+It also displays the result of running the generated instructions in a
+**Program output** panel.
 
 To recreate the PDF after editing this guide, run `python .\make_pdf.py` in
 PowerShell from the project folder.

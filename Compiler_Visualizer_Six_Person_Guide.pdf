@@ -4,7 +4,7 @@
 << /Type /Catalog /Pages 2 0 R >>
 endobj
 2 0 obj
-<< /Type /Pages /Kids [5 0 R 7 0 R 9 0 R 11 0 R 13 0 R 15 0 R 17 0 R] /Count 7 >>
+<< /Type /Pages /Kids [5 0 R 7 0 R 9 0 R 11 0 R 13 0 R 15 0 R 17 0 R 19 0 R] /Count 8 >>
 endobj
 3 0 obj
 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
@@ -25,7 +25,7 @@ BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 675.6 Tm (The C source is kept in
 BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 661.1 Tm (mark the six parts. Each person's section below follows those same markers and explains the code) Tj ET
 BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 646.6 Tm (in simple language.) Tj ET
 0.80 0.84 0.89 RG 58 42 m 554 42 l S
-BT /F1 8 Tf 0.35 0.42 0.51 rg 1 0 0 1 480 27 Tm (Page 1 of 7) Tj ET
+BT /F1 8 Tf 0.35 0.42 0.51 rg 1 0 0 1 480 27 Tm (Page 1 of 8) Tj ET
 endstream
 endobj
 7 0 obj
@@ -54,14 +54,14 @@ BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 469.3 Tm (parser does not call th
 BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 68.0 449.8 Tm (- lex starts scanning at the first character and tracks the current source) Tj ET
 BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 435.3 Tm (line. It skips spaces and new lines, prepares a word buffer, and skips // comments.) Tj ET
 0.80 0.84 0.89 RG 58 42 m 554 42 l S
-BT /F1 8 Tf 0.35 0.42 0.51 rg 1 0 0 1 480 27 Tm (Page 2 of 7) Tj ET
+BT /F1 8 Tf 0.35 0.42 0.51 rg 1 0 0 1 480 27 Tm (Page 2 of 8) Tj ET
 endstream
 endobj
 9 0 obj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 10 0 R >>
 endobj
 10 0 obj
-<< /Length 1971 >>
+<< /Length 2229 >>
 stream
 BT /F1 8 Tf 0.35 0.42 0.51 rg 1 0 0 1 58 762 Tm (MINI C COMPILER VISUALIZER  |  SIX-PERSON GUIDE) Tj ET
 0.80 0.84 0.89 RG 58 750 m 554 750 l S
@@ -79,8 +79,10 @@ BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 532.3 Tm (and parentheses.) Tj ET
 BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 68.0 512.8 Tm (- If a character does not match a supported token, the lexer prints an error) Tj ET
 BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 498.3 Tm (and continues scanning.) Tj ET
 BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 68.0 478.8 Tm (- <END> marks the end of the token list so the parser knows when to stop.) Tj ET
+BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 68.0 464.3 Tm (- In the visualizer, tokens are shown as numbered rows with their source line,) Tj ET
+BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 449.8 Tm (making it easier to find where each one came from.) Tj ET
 0.80 0.84 0.89 RG 58 42 m 554 42 l S
-BT /F1 8 Tf 0.35 0.42 0.51 rg 1 0 0 1 480 27 Tm (Page 3 of 7) Tj ET
+BT /F1 8 Tf 0.35 0.42 0.51 rg 1 0 0 1 480 27 Tm (Page 3 of 8) Tj ET
 endstream
 endobj
 11 0 obj
@@ -110,7 +112,7 @@ BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 459.8 Tm (continue.) Tj ET
 BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 68.0 440.3 Tm (- term reads multiplication, division, and remainder operations. For) Tj ET
 BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 425.8 Tm (example, a  b becomes an instruction like t1 = a  b.) Tj ET
 0.80 0.84 0.89 RG 58 42 m 554 42 l S
-BT /F1 8 Tf 0.35 0.42 0.51 rg 1 0 0 1 480 27 Tm (Page 4 of 7) Tj ET
+BT /F1 8 Tf 0.35 0.42 0.51 rg 1 0 0 1 480 27 Tm (Page 4 of 8) Tj ET
 endstream
 endobj
 13 0 obj
@@ -134,7 +136,7 @@ BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 546.8 Tm (int main\(\) { ... } pr
 BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 68.0 527.3 Tm (- The declaration case reads code such as int count = 3;. It adds the) Tj ET
 BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 512.8 Tm (variable to the symbol table, then reads and saves an initial value if one is present.) Tj ET
 0.80 0.84 0.89 RG 58 42 m 554 42 l S
-BT /F1 8 Tf 0.35 0.42 0.51 rg 1 0 0 1 480 27 Tm (Page 5 of 7) Tj ET
+BT /F1 8 Tf 0.35 0.42 0.51 rg 1 0 0 1 480 27 Tm (Page 5 of 8) Tj ET
 endstream
 endobj
 15 0 obj
@@ -157,75 +159,94 @@ BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 566.3 Tm (assignment.) Tj ET
 BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 68.0 546.8 Tm (- The for implementation is intentionally small. It does not support every) Tj ET
 BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 532.3 Tm (expression allowed in the full C language.) Tj ET
 0.80 0.84 0.89 RG 58 42 m 554 42 l S
-BT /F1 8 Tf 0.35 0.42 0.51 rg 1 0 0 1 480 27 Tm (Page 6 of 7) Tj ET
+BT /F1 8 Tf 0.35 0.42 0.51 rg 1 0 0 1 480 27 Tm (Page 6 of 8) Tj ET
 endstream
 endobj
 17 0 obj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 18 0 R >>
 endobj
 18 0 obj
-<< /Length 4051 >>
+<< /Length 4613 >>
 stream
 BT /F1 8 Tf 0.35 0.42 0.51 rg 1 0 0 1 58 762 Tm (MINI C COMPILER VISUALIZER  |  SIX-PERSON GUIDE) Tj ET
 0.80 0.84 0.89 RG 58 750 m 554 750 l S
 BT /F1 16 Tf 0.180 0.280 0.430 rg 1 0 0 1 58.0 716.0 Tm (Part 6 — Print, return, assignments, and phase output) Tj ET
 BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 685.8 Tm (This part starts at the PART 6 marker inside statement and includes the rest of the file.) Tj ET
-BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 68.0 663.3 Tm (- The printf case supports a quoted string, one simple value, or a string) Tj ET
-BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 648.8 Tm (followed by one value. It emits a print instruction. Full C formatting, such as %d, is not) Tj ET
-BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 634.3 Tm (implemented.) Tj ET
-BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 68.0 614.8 Tm (- The return case reads either return; or return followed by an) Tj ET
-BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 600.3 Tm (expression, then emits a return instruction.) Tj ET
-BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 68.0 580.8 Tm (- The assignment case reads a variable assignment, ++, or --. It checks) Tj ET
-BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 566.3 Tm (that the variable was declared first.) Tj ET
-BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 68.0 546.8 Tm (- If a statement is not recognized, the compiler reports a syntax error and) Tj ET
-BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 532.3 Tm (moves to the next token so it can continue.) Tj ET
-BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 68.0 512.8 Tm (- main reads source text from standard input, runs the lexer, parses the) Tj ET
-BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 498.3 Tm (statements, and prints the tokens, syntax/semantic result, symbol table, and intermediate code.) Tj ET
-BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 68.0 478.8 Tm (- The compiler prints intermediate code only when no errors were found. It) Tj ET
-BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 464.3 Tm (returns 0 for success and 1 when it finds errors. The web server uses this result to show success) Tj ET
-BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 449.8 Tm (or failure.) Tj ET
-BT /F1 16 Tf 0.180 0.280 0.430 rg 1 0 0 1 58.0 419.3 Tm (Build and run on Windows) Tj ET
-BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 389.1 Tm (Open PowerShell in the project folder and build the C compiler:) Tj ET
-BT /F2 8.2 Tf 0.120 0.320 0.390 rg 1 0 0 1 67.0 364.6 Tm (gcc .\\compiler.c -o .\\mini_compiler.exe) Tj ET
-BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 348.6 Tm (Start the local web server:) Tj ET
-BT /F2 8.2 Tf 0.120 0.320 0.390 rg 1 0 0 1 67.0 324.1 Tm (python .\\server.py) Tj ET
-BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 308.1 Tm (Keep that terminal open, then open http://127.0.0.1:8765 in a browser. Click Load sample, then) Tj ET
-BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 293.6 Tm (Compile and view phases. The page shows tokens, syntax/semantic checks, the symbol table, and) Tj ET
-BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 279.1 Tm (intermediate code separately.) Tj ET
-BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 256.6 Tm (To recreate the PDF after editing this guide, run python .\\make_pdf.py in PowerShell from the) Tj ET
-BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 242.1 Tm (project folder.) Tj ET
-BT /F1 16 Tf 0.180 0.280 0.430 rg 1 0 0 1 58.0 211.6 Tm (Tools used) Tj ET
-BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 68.0 181.4 Tm (- C and GCC/MinGW: build the compiler executable from compiler.c.) Tj ET
-BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 68.0 166.9 Tm (- Python 3: runs the local server that connects the browser and C program.) Tj ET
-BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 68.0 152.4 Tm (- HTML, CSS, and JavaScript: create and operate the browser interface.) Tj ET
-BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 68.0 137.9 Tm (- A web browser: lets a user enter code and view the compiler phases.) Tj ET
+BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 68.0 663.3 Tm (- The printf case supports a quoted string, one simple value, or one %d) Tj ET
+BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 648.8 Tm (integer placeholder with a value. It turns these into print instructions.) Tj ET
+BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 68.0 629.3 Tm (- The return case reads either return; or return followed by an) Tj ET
+BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 614.8 Tm (expression, then emits a return instruction.) Tj ET
+BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 68.0 595.3 Tm (- The assignment case reads a variable assignment, ++, or --. It checks) Tj ET
+BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 580.8 Tm (that the variable was declared first.) Tj ET
+BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 68.0 561.3 Tm (- If a statement is not recognized, the compiler reports a syntax error and) Tj ET
+BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 546.8 Tm (moves to the next token so it can continue.) Tj ET
+BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 68.0 527.3 Tm (- main reads source text from standard input, runs the lexer, parses the) Tj ET
+BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 512.8 Tm (statements, and prints the tokens, syntax/semantic result, symbol table, and intermediate code.) Tj ET
+BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 68.0 493.3 Tm (- run_intermediate walks through the generated instructions. It follows) Tj ET
+BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 478.8 Tm (labels and jumps, performs integer calculations, and collects text produced by print) Tj ET
+BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 464.3 Tm (instructions. A step limit stops accidental infinite loops.) Tj ET
+BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 68.0 444.8 Tm (- The program output is shown after the intermediate code. For the sample, it) Tj ET
+BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 430.3 Tm (displays Result: 10.) Tj ET
+BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 68.0 410.8 Tm (- The compiler runs generated instructions only when there are no errors. It) Tj ET
+BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 396.3 Tm (returns 0 for success and 1 when it finds errors. The web server uses this result to show success) Tj ET
+BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 381.8 Tm (or failure.) Tj ET
+BT /F1 16 Tf 0.180 0.280 0.430 rg 1 0 0 1 58.0 351.3 Tm (Build and run on Windows) Tj ET
+BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 321.1 Tm (Open PowerShell in the project folder and build the C compiler:) Tj ET
+BT /F2 8.2 Tf 0.120 0.320 0.390 rg 1 0 0 1 67.0 296.6 Tm (gcc .\\compiler.c -o .\\mini_compiler.exe) Tj ET
+BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 280.6 Tm (Start the local web server:) Tj ET
+BT /F2 8.2 Tf 0.120 0.320 0.390 rg 1 0 0 1 67.0 256.1 Tm (python .\\server.py) Tj ET
+BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 240.1 Tm (Keep that terminal open, then open http://127.0.0.1:8765 in a browser. Click Load sample, then) Tj ET
+BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 225.6 Tm (Compile and view phases. The page shows tokens, syntax/semantic checks, the symbol table, and) Tj ET
+BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 211.1 Tm (intermediate code separately. It also displays the result of running the generated instructions) Tj ET
+BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 196.6 Tm (in a Program output panel.) Tj ET
+BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 174.1 Tm (To recreate the PDF after editing this guide, run python .\\make_pdf.py in PowerShell from the) Tj ET
+BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 58.0 159.6 Tm (project folder.) Tj ET
+BT /F1 16 Tf 0.180 0.280 0.430 rg 1 0 0 1 58.0 129.1 Tm (Tools used) Tj ET
+BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 68.0 98.9 Tm (- C and GCC/MinGW: build the compiler executable from compiler.c.) Tj ET
+BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 68.0 84.4 Tm (- Python 3: runs the local server that connects the browser and C program.) Tj ET
+BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 68.0 69.9 Tm (- HTML, CSS, and JavaScript: create and operate the browser interface.) Tj ET
 0.80 0.84 0.89 RG 58 42 m 554 42 l S
-BT /F1 8 Tf 0.35 0.42 0.51 rg 1 0 0 1 480 27 Tm (Page 7 of 7) Tj ET
+BT /F1 8 Tf 0.35 0.42 0.51 rg 1 0 0 1 480 27 Tm (Page 7 of 8) Tj ET
+endstream
+endobj
+19 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 20 0 R >>
+endobj
+20 0 obj
+<< /Length 382 >>
+stream
+BT /F1 8 Tf 0.35 0.42 0.51 rg 1 0 0 1 58 762 Tm (MINI C COMPILER VISUALIZER  |  SIX-PERSON GUIDE) Tj ET
+0.80 0.84 0.89 RG 58 750 m 554 750 l S
+BT /F1 10 Tf 0.170 0.200 0.260 rg 1 0 0 1 68.0 724.0 Tm (- A web browser: lets a user enter code and view the compiler phases.) Tj ET
+0.80 0.84 0.89 RG 58 42 m 554 42 l S
+BT /F1 8 Tf 0.35 0.42 0.51 rg 1 0 0 1 480 27 Tm (Page 8 of 8) Tj ET
 endstream
 endobj
 xref
-0 19
+0 21
 0000000000 65535 f 
 0000000015 00000 n 
 0000000064 00000 n 
-0000000161 00000 n 
-0000000258 00000 n 
-0000000353 00000 n 
-0000000489 00000 n 
-0000001293 00000 n 
-0000001429 00000 n 
-0000003887 00000 n 
-0000004024 00000 n 
-0000006047 00000 n 
-0000006185 00000 n 
-0000008649 00000 n 
-0000008787 00000 n 
-0000010588 00000 n 
-0000010726 00000 n 
-0000012403 00000 n 
-0000012541 00000 n 
+0000000168 00000 n 
+0000000265 00000 n 
+0000000360 00000 n 
+0000000496 00000 n 
+0000001300 00000 n 
+0000001436 00000 n 
+0000003894 00000 n 
+0000004031 00000 n 
+0000006312 00000 n 
+0000006450 00000 n 
+0000008914 00000 n 
+0000009052 00000 n 
+0000010853 00000 n 
+0000010991 00000 n 
+0000012668 00000 n 
+0000012806 00000 n 
+0000017471 00000 n 
+0000017609 00000 n 
 trailer
-<< /Size 19 /Root 1 0 R >>
+<< /Size 21 /Root 1 0 R >>
 startxref
-16644
+18042
 %%EOF

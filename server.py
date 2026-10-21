@@ -12,12 +12,13 @@ MARKERS = [
     "=== 2. SYNTAX + SEMANTIC ANALYSIS ===",
     "=== 3. SYMBOL TABLE ===",
     "=== 4. INTERMEDIATE CODE (THREE-ADDRESS STYLE) ===",
+    "=== 5. PROGRAM OUTPUT ===",
 ]
 
 
 def split_phases(stdout: str, stderr: str) -> dict:
     parts = stdout.splitlines()
-    phases = {"tokens": "", "checks": "", "symbols": "", "ir": ""}
+    phases = {"tokens": "", "checks": "", "symbols": "", "ir": "", "program_output": ""}
     current = None
     mapping = dict(zip(MARKERS, phases))
     for line in parts:

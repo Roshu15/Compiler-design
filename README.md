@@ -8,6 +8,7 @@ simple subset of C and displays each compiler phase in its own panel:
    verifies that variables are declared before use.
 3. Symbol table: lists declared integer variables.
 4. Intermediate code: displays simple three-address instructions and labels.
+5. Program output: runs the generated instructions for the supported subset.
 
 ## Build and open the frontend
 
@@ -29,8 +30,9 @@ http://127.0.0.1:8765
 
 Click **Load sample** to fill the editor, then click **Compile and view phases**.
 The tokens, syntax and semantic checks, symbol table, and intermediate code
-appear in separate panels. You can edit the source in the page and compile it
-again. To stop the local server, press **Ctrl+C** in PowerShell.
+appear in separate panels, followed by the program output. You can edit the
+source in the page and compile it again. To stop the local server, press
+**Ctrl+C** in PowerShell.
 
 To run the compiler directly in the terminal instead, use:
 
@@ -49,6 +51,7 @@ the page with `python3 server.py`, and open `http://127.0.0.1:8765`.
 - `if` and `else`
 - `while` and `for` loops
 - `printf` with a string or a simple value
+- One `%d` integer placeholder in `printf`
 - `//` single-line comments
 - Braces for statement blocks
 

@@ -220,21 +220,27 @@ void emit(const char *s) {
 }
 
 char *new_temp(void) {
-    static char names[2][24];
-    static int slot;
+    static char names[MAX_CODE][24];
+    static int count;
 
-    slot = (slot + 1) % 2;
-    snprintf(names[slot], 24, "t%d", ++temp_id);
-    return names[slot];
+    if (count >= MAX_CODE) {
+        return names[MAX_CODE - 1];
+    }
+
+    snprintf(names[count], sizeof(names[count]), "t%d", ++temp_id);
+    return names[count++];
 }
 
 char *new_label(void) {
-    static char names[2][24];
-    static int slot;
+    static char names[MAX_CODE][24];
+    static int count;
 
-    slot = (slot + 1) % 2;
-    snprintf(names[slot], 24, "L%d", ++label_id);
-    return names[slot];
+    if (count >= MAX_CODE) {
+        return names[MAX_CODE - 1];
+    }
+
+    snprintf(names[count], sizeof(names[count]), "L%d", ++label_id);
+    return names[count++];
 }
 
 char *expression(void);
@@ -531,20 +537,52 @@ void statement(void) {
         expect("(");
 
         if (peek()[0] == '"') {
+            char format[MAX_TEXT];
+            snprintf(format, sizeof(format), "%s", peek());
             pos++;
 
             if (accept(",")) {
                 char *v = expression();
-                char out[MAX_TEXT * 2];
-                snprintf(out, sizeof(out), "print %s", v);
-                emit(out);
+                char value[MAX_TEXT];
+                snprintf(value, sizeof(value), "%s", v);
+                char *placeholder = strstr(format, "%d");
+
+                if (placeholder) {
+                    char prefix[MAX_TEXT];
+                    char suffix[MAX_TEXT];
+                    size_t prefix_length = (size_t)(placeholder - format);
+
+                    memcpy(prefix, format, prefix_length);
+                    prefix[prefix_length] = '"';
+                    prefix[prefix_length + 1] = 0;
+                    snprintf(suffix, sizeof(suffix), "\"%s", placeholder + 2);
+
+                    char out[MAX_TEXT * 2];
+                    snprintf(out, sizeof(out), "printstr %s", prefix);
+                    emit(out);
+                    snprintf(out, sizeof(out), "print %s", value);
+                    emit(out);
+
+                    if (strcmp(suffix, "\"\"")) {
+                        snprintf(out, sizeof(out), "printstr %s", suffix);
+                        emit(out);
+                    }
+                } else {
+                    char out[MAX_TEXT * 2];
+                    snprintf(out, sizeof(out), "printstr %s", format);
+                    emit(out);
+                }
             } else {
-                emit("print string");
+                char out[MAX_TEXT * 2];
+                snprintf(out, sizeof(out), "printstr %s", format);
+                emit(out);
             }
         } else {
             char *v = expression();
+            char value[MAX_TEXT];
+            snprintf(value, sizeof(value), "%s", v);
             char out[MAX_TEXT * 2];
-            snprintf(out, sizeof(out), "print %s", v);
+            snprintf(out, sizeof(out), "print %s", value);
             emit(out);
         }
 
@@ -610,6 +648,207 @@ void statement(void) {
     }
 }
 
+typedef struct {
+    char name[MAX_TEXT];
+    int value;
+} RuntimeValue;
+
+int get_runtime_value(const char *name, RuntimeValue values[], int *count) {
+    if (isdigit((unsigned char)name[0])) {
+        return (int)strtol(name, NULL, 10);
+    }
+
+    for (int i = 0; i < *count; i++) {
+        if (!strcmp(values[i].name, name)) {
+            return values[i].value;
+        }
+    }
+
+    if (*count < MAX_CODE + MAX_VARS) {
+        snprintf(values[*count].name, MAX_TEXT, "%s", name);
+        values[*count].value = 0;
+        (*count)++;
+    }
+
+    return 0;
+}
+
+void set_runtime_value(const char *name, int value,
+                       RuntimeValue values[], int *count) {
+    for (int i = 0; i < *count; i++) {
+        if (!strcmp(values[i].name, name)) {
+            values[i].value = value;
+            return;
+        }
+    }
+
+    if (*count < MAX_CODE + MAX_VARS) {
+        snprintf(values[*count].name, MAX_TEXT, "%s", name);
+        values[*count].value = value;
+        (*count)++;
+    }
+}
+
+void append_output(char output[], size_t capacity, size_t *used,
+                   const char *text) {
+    while (*text && *used + 1 < capacity) {
+        output[(*used)++] = *text++;
+    }
+    output[*used] = 0;
+}
+
+void append_string_literal(char output[], size_t capacity, size_t *used,
+                           const char *literal) {
+    if (*literal != '"') {
+        return;
+    }
+
+    literal++;
+    while (*literal && *literal != '"' && *used + 1 < capacity) {
+        char ch = *literal++;
+
+        if (ch == '\\' && *literal) {
+            ch = *literal++;
+            if (ch == 'n') {
+                ch = '\n';
+            } else if (ch == 't') {
+                ch = '\t';
+            }
+        }
+
+        output[(*used)++] = ch;
+    }
+
+    output[*used] = 0;
+}
+
+int find_label(const char *name, char labels[][MAX_TEXT],
+               int positions[], int count) {
+    for (int i = 0; i < count; i++) {
+        if (!strcmp(labels[i], name)) {
+            return positions[i];
+        }
+    }
+
+    return -1;
+}
+
+int calculate(int left, const char *op, int right) {
+    if (!strcmp(op, "+")) return left + right;
+    if (!strcmp(op, "-")) return left - right;
+    if (!strcmp(op, "*")) return left * right;
+    if (!strcmp(op, "/")) return right ? left / right : 0;
+    if (!strcmp(op, "%")) return right ? left % right : 0;
+    if (!strcmp(op, "==")) return left == right;
+    if (!strcmp(op, "!=")) return left != right;
+    if (!strcmp(op, "<")) return left < right;
+    if (!strcmp(op, ">")) return left > right;
+    if (!strcmp(op, "<=")) return left <= right;
+    if (!strcmp(op, ">=")) return left >= right;
+    return 0;
+}
+
+void run_intermediate(char output[], size_t capacity) {
+    char labels[MAX_CODE][MAX_TEXT];
+    int label_positions[MAX_CODE];
+    int label_count = 0;
+    RuntimeValue values[MAX_CODE + MAX_VARS];
+    int value_count = 0;
+    size_t output_length = 0;
+    int pc = 0;
+    int steps = 0;
+
+    output[0] = 0;
+
+    for (int i = 0; i < code_count; i++) {
+        char *colon = strchr(code[i], ':');
+        if (colon && colon[1] == 0 && label_count < MAX_CODE) {
+            size_t name_length = (size_t)(colon - code[i]);
+            memcpy(labels[label_count], code[i], name_length);
+            labels[label_count][name_length] = 0;
+            label_positions[label_count] = i;
+            label_count++;
+        }
+    }
+
+    while (pc < code_count && steps++ < 100000) {
+        char *line = code[pc];
+        char *colon = strchr(line, ':');
+
+        if (colon && colon[1] == 0) {
+            pc++;
+            continue;
+        }
+
+        if (!strncmp(line, "goto ", 5)) {
+            char target[MAX_TEXT];
+            sscanf(line + 5, "%127s", target);
+            int target_pc = find_label(target, labels, label_positions, label_count);
+            pc = target_pc >= 0 ? target_pc : pc + 1;
+            continue;
+        }
+
+        if (!strncmp(line, "ifFalse ", 8)) {
+            char condition[MAX_TEXT];
+            char target[MAX_TEXT];
+            sscanf(line, "ifFalse %127s goto %127s", condition, target);
+
+            if (!get_runtime_value(condition, values, &value_count)) {
+                int target_pc = find_label(target, labels, label_positions, label_count);
+                pc = target_pc >= 0 ? target_pc : pc + 1;
+            } else {
+                pc++;
+            }
+            continue;
+        }
+
+        if (!strncmp(line, "printstr ", 9)) {
+            append_string_literal(output, capacity, &output_length, line + 9);
+            pc++;
+            continue;
+        }
+
+        if (!strncmp(line, "print ", 6)) {
+            char value[MAX_TEXT];
+            char rendered[32];
+            sscanf(line + 6, "%127s", value);
+            snprintf(rendered, sizeof(rendered), "%d",
+                     get_runtime_value(value, values, &value_count));
+            append_output(output, capacity, &output_length, rendered);
+            pc++;
+            continue;
+        }
+
+        if (!strncmp(line, "return", 6)) {
+            break;
+        }
+
+        char target[MAX_TEXT];
+        char left[MAX_TEXT];
+        char op[8];
+        char right[MAX_TEXT];
+        int parts = sscanf(line, "%127s = %127s %7s %127s",
+                           target, left, op, right);
+
+        if (parts == 4) {
+            int left_value = get_runtime_value(left, values, &value_count);
+            int right_value = get_runtime_value(right, values, &value_count);
+            set_runtime_value(target, calculate(left_value, op, right_value),
+                              values, &value_count);
+        } else if (parts == 2) {
+            set_runtime_value(target, get_runtime_value(left, values, &value_count),
+                              values, &value_count);
+        }
+
+        pc++;
+    }
+
+    if (steps >= 100000) {
+        append_output(output, capacity, &output_length,
+                      "\nStopped: execution step limit reached.");
+    }
+}
+
 int main(void) {
     char source[20000];
     size_t used = 0;
@@ -623,10 +862,12 @@ int main(void) {
     lex(source);
 
     puts("=== 1. LEXICAL ANALYSIS: TOKENS ===");
+    printf("%-6s %-24s %s\n", "No.", "Token", "Line");
+    printf("-----------------------------------\n");
     for (int i = 0; i < token_count - 1; i++) {
-        printf("%-12s%s", tokens[i].text, (i % 6 == 5) ? "\n" : " ");
+        printf("%-6d %-24s %d\n", i + 1, tokens[i].text, tokens[i].line);
     }
-    puts("\n");
+    putchar('\n');
 
     puts("=== 2. SYNTAX + SEMANTIC ANALYSIS ===");
     pos = 0;
@@ -656,6 +897,15 @@ int main(void) {
         for (int i = 0; i < code_count; i++) {
             printf("%2d: %s\n", i + 1, code[i]);
         }
+    }
+
+    puts("=== 5. PROGRAM OUTPUT ===");
+    if (errors) {
+        puts("Not run because the source contains errors.");
+    } else {
+        char output[4096];
+        run_intermediate(output, sizeof(output));
+        puts(output[0] ? output : "(no output)");
     }
 
     return errors ? 1 : 0;
